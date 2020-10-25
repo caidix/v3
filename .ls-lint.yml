@@ -1,0 +1,17 @@
+ls:
+  src/*:
+    .js: kebab-case | PascalCase
+    .vue: PascalCase | regex:^index
+    .ts: camelCase | PascalCase
+    .d.ts: kebab-case
+    .data.ts: camelCase | kebab-case
+    .scss: kebab-case | PascalCase
+    .spec.ts: camelCase | PascalCase
+
+ignore:
+  - node_modules
+  - .git
+  - .github
+  - .vscode
+  - dist
+  - .local

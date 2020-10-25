@@ -33,7 +33,6 @@ module.exports = {
     'dot-notation': [2, { allowKeywords: true }],
     'eol-last': 2,
     'no-eval': 1,
-    'comma-dangle': ['2', 'never'],
     'no-multi-spaces': 1, //不能用多余的空格
     'no-const-assign': 2, //禁止修改const声明的变量
     // 'no-console': 2, //禁止使用console
