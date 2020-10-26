@@ -5,6 +5,7 @@
     "dev": "cross-env NODE_ENV=development vite",
     "build": "vite build",
     "clear:lib": "npx rimraf node_modules",
+    "clear:cache": "npx rimraf node_modules/.vite_opt_cache",
     "lint:eslint": "eslint --fix --ext \"src/**/*.{vue,less,css,scss}\"",
     "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,css,scss,html}\" --cache --cache-location node_modules/.cache/stylelint/"
   },

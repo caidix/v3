@@ -16,10 +16,10 @@ const routes: Array<RouteRecordRaw> = [
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About'),
   // },
 ];
-
+// 获取路由配置router.getRoutes() 移除某一个路由router.removeRoute(name)
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
+console.log(router.getRoutes());
 export default router;
