@@ -7,6 +7,14 @@ export default {
   optimizeDeps: {
     include: ['ant-design-vue/es/locale/zh_CN', '@ant-design/icons-vue', 'moment/locale/zh-cn'],
   },
+  proxy: {
+    '/api': {
+      target: 'https://api.mtnhao.com',
+      rewrite: (path: string) => path.replace(/^\/api/, ''),
+      changeOrigin: true,
+      secure: false, // https时需要加此参数
+    },
+  },
 };
 
 // Proxy: 'https://api.mtnhao.com/'
