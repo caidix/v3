@@ -6,6 +6,7 @@ import { HandlerFunction } from './types';
 const request = axios.create({
   baseURL: '/api',
 });
+// codeHandler从响应结构中取出data，需要放在最后进行
 [cancelHandler, codeHandler].forEach((handler: any) => {
   const handlerContext: HandlerFunction = handler();
   function normalRequestResolve(config: AxiosRequestConfig) {
