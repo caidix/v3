@@ -4,6 +4,7 @@ interface CreateStorageParams {
   prefix?: string;
 }
 const defaultTime = 60 * 60 * 24 * 7 * 1000;
+const defaultPrefix = 'CD_';
 class StorageKey {
   storage!: Storage;
   prefix!: string;
@@ -13,7 +14,7 @@ class StorageKey {
 }
 class WebStorage extends StorageKey {
   // 过期时间默认设置为一星期
-  constructor({ storage = localStorage, prefix = '' }) {
+  constructor({ storage = localStorage, prefix = defaultPrefix }: CreateStorageParams) {
     super();
     this.storage = storage;
     this.prefix = prefix;
@@ -53,7 +54,7 @@ class WebStorage extends StorageKey {
   }
 }
 class CookieStorage extends StorageKey {
-  constructor({ prefix = '' }) {
+  constructor({ prefix = defaultPrefix }: CreateStorageParams) {
     super();
     this.prefix = prefix;
   }

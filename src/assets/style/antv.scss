@@ -1,0 +1,9 @@
+$header-height: 50px;
+$pink: #ffb3a7;
+
+.ant-layout-header {
+  height: $header-height;
+  line-height: $header-height;
+  color: $pink;
+  background: $pink;
+}
