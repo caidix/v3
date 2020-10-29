@@ -7,6 +7,15 @@ export default defineComponent({
     Header,
   },
   setup() {
-    return () => <Layout>{() => <Header />}</Layout>;
+    return () => (
+      <Layout>
+        {() => (
+          <>
+            <Header />
+            <div class="mt-1">hahaha</div>
+          </>
+        )}
+      </Layout>
+    );
   },
 });

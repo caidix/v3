@@ -5,10 +5,11 @@ export default defineComponent({
   setup() {
     const selectedKeys = ref('2');
     return () => (
-      <Layout.Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+      <Layout.Header>
         {{
           default: () => (
             <Menu
+              class="mt-3"
               theme="dark"
               mode="horizontal"
               onSelectedKeys={selectedKeys}
