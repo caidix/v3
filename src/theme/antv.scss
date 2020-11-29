@@ -1,9 +1,25 @@
 $header-height: 50px;
 $pink: #ffb3a7;
+$cangse: #622a1d;
+$active: #31c27c;
+
+.active-index {
+  color: $active;
+}
 
 .ant-layout-header {
   height: $header-height;
   line-height: $header-height;
-  color: $pink;
+  color: $cangse;
   background: $pink;
+}
+
+.ant-menu-dark {
+  height: $header-height;
+  line-height: $header-height;
+
+  & .ant-menu-sub {
+    color: #000;
+    background: rgba(255, 255, 255, 0.65);
+  }
 }

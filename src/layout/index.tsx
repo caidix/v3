@@ -1,6 +1,7 @@
 import Header from '/@/layout/LayoutHeader';
 import { Layout } from 'ant-design-vue';
 import { defineComponent } from 'vue';
+import { RouterView } from 'vue-router';
 export default defineComponent({
   name: 'DefineLayout',
   components: {
@@ -12,7 +13,9 @@ export default defineComponent({
         {() => (
           <>
             <Header />
-            <div class="mt-1">hahaha</div>
+            <div class="layout-body">
+              <RouterView />
+            </div>
           </>
         )}
       </Layout>

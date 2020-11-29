@@ -10,7 +10,7 @@
     "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,css,scss,html}\" --cache --cache-location node_modules/.cache/stylelint/"
   },
   "dependencies": {
-    "ant-design-vue": "^2.0.0-beta.10",
+    "ant-design-vue": "^2.0.0-beta.13",
     "axios": "^0.21.0",
     "vue": "^3.0.2",
     "vue-router": "^4.0.0-rc.1",

@@ -1,0 +1,231 @@
+<template>
+  <form-block>
+    <template #title>
+      <h2>歌单推荐</h2>
+    </template>
+    <template #header>
+      <ul class="playlist-category mb-3">
+        <li
+          v-for="(cat, index) in categoryRef"
+          :key="index"
+          :class="{ 'active-index': activeIndexRef === index }"
+          @click="getSheetByCategory(index)"
+        >
+          {{ cat.name || cat.displayName }}
+        </li>
+      </ul>
+    </template>
+    <a-spin :spinning="loadingRef">
+      <div class="playlist">
+        <div class="playlist-item_box" v-for="(item, index) in sheetRef" :key="index">
+          <div class="playlist-item__imgwarp" @click="routeTo(item.id)">
+            <img class="playlist-item__img" :src="genImgUrl(item.coverImgUrl, 300)" alt="" />
+            <div class="desc-wrap" v-if="item.description">
+              <span class="desc">{{ filterDescription(item.description) }}</span>
+            </div>
+            <PlayCircleOutlined :style="{ fontSize: '32px' }" class="playlist-item__icon" />
+          </div>
+          <div class="playlist-item__content">
+            <div class="playlist-item__name" @click="routeTo(item.id)">{{ item.name }}</div>
+            <div class="playlist-item__count mt-2">
+              播放量:{{ filterPlayCount(item.playCount) }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </a-spin>
+  </form-block>
+</template>
+
+<script lang="ts">
+import { onMounted, ref } from 'vue';
+import { PlayCircleOutlined } from '@ant-design/icons-vue';
+import { LoadingHook } from '/@/hooks/useLoading';
+import FormBlock from './FormBlock.vue';
+import { getPlaylists, getHotPlayListCategory } from '/@/api/playlist';
+import { useRouter } from 'vue-router';
+export default {
+  components: {
+    FormBlock,
+    PlayCircleOutlined,
+  },
+  setup(props, { emit }) {
+    const sheetRef = ref(null);
+    const categoryRef = ref<Array<any>>([]);
+    const activeIndexRef = ref<Number>(0);
+    const { loadingRef, loading, loaded } = LoadingHook();
+    const router = useRouter();
+
+    function genImgUrl(url: string, w: number, h: number) {
+      if (!h) {
+        h = w;
+      }
+      url += `?param=${w}y${h}`;
+      return url;
+    }
+    function filterDescription(val: string): string {
+      if (val.length < 20) {
+        return val;
+      }
+      return val.slice(0, 20) + '......';
+    }
+    function filterPlayCount(val: number): number | string {
+      if (val >= 100000000) {
+        return Math.ceil(val / 1000000) / 100 + '亿';
+      }
+      if (val >= 10000) {
+        return Math.ceil(val / 100) / 100 + '万';
+      }
+      return val;
+    }
+    const getSongSheet = async (cat = ''): Promise<void> => {
+      loading();
+      const { playlists }: any = await getPlaylists({ limit: 10, cat });
+      sheetRef.value = playlists || [];
+      loaded();
+    };
+    const getSongCategory = async (): Promise<void> => {
+      const { tags }: any = await getHotPlayListCategory();
+      console.log(tags);
+      if (tags && tags.length > 5) {
+        tags.length = 5;
+      }
+      categoryRef.value = [{ name: '', displayName: '为你推荐' }, ...tags] || [];
+    };
+    const getSheetByCategory = (index: number) => {
+      activeIndexRef.value = index;
+      const { name } = categoryRef.value[index];
+      getSongSheet(name);
+    };
+    const routeTo = (id: number) => {
+      router.push(`/playlists/${id}`);
+    };
+    onMounted(() => {
+      getSongSheet();
+      getSongCategory();
+    });
+    return {
+      sheetRef,
+      categoryRef,
+      activeIndexRef,
+      loadingRef,
+      genImgUrl,
+      filterDescription,
+      filterPlayCount,
+      getSheetByCategory,
+      routeTo,
+    };
+  },
+};
+</script>
+<style lang="scss" scoped>
+$active: #31c27c;
+
+.playlist {
+  display: flex;
+  margin: 0 -4px;
+  flex-wrap: wrap;
+}
+
+.playlist-category {
+  display: flex;
+  justify-content: center;
+
+  li {
+    margin: 0 24px;
+    cursor: pointer;
+
+    &:hover {
+      color: $active;
+    }
+  }
+}
+
+.playlist-item_box {
+  position: relative;
+  width: calc(20% - 8px);
+  margin: 4px;
+  margin-bottom: 32px;
+  font-size: 14px;
+}
+
+.playlist-item__imgwarp {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  margin-bottom: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 4px;
+
+  &:hover {
+    .playlist-item__img {
+      transform: scale(1.07) translateZ(0);
+    }
+
+    .playlist-item__icon {
+      opacity: 1;
+      transform: scale(1) translateZ(0);
+    }
+
+    .desc-wrap {
+      transform: translateY(0);
+    }
+  }
+
+  .playlist-item__icon {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: $active;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    transition-duration: 0.5s;
+    transition-property: opacity, transform;
+  }
+
+  .playlist-item__img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.75s cubic-bezier(0, 1, 0.75, 1);
+  }
+
+  .desc-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 6px;
+    background-color: rgba(0, 0, 0, 0.4);
+    transform: translateY(-100%);
+    transition: all 0.3s;
+
+    .desc {
+      font-size: 12px;
+      color: #fff;
+    }
+  }
+}
+
+.playlist-item__count {
+  height: 22px;
+  overflow: hidden;
+  color: #999;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.playlist-item__name {
+  cursor: pointer;
+
+  &:hover {
+    color: $active;
+  }
+}
+</style>

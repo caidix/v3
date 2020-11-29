@@ -63,34 +63,34 @@ $colors: (
 );
 @each $key in (left, right, center) {
   .text-#{$key} {
-    text-align: #{$key} !important;
+    text-align: #{$key};
   }
 }
 
 @each $key, $color in $colors {
   .border#{$key} {
-    border-color: #{$color} !important;
+    border-color: #{$color};
   }
   .text#{$key} {
-    color: #{$color} !important;
+    color: #{$color};
   }
   .bg#{$key} {
-    background-color: #{$color} !important;
+    background-color: #{$color};
   }
 }
 
 .ba0 {
-  border: 0 !important;
+  border: 0;
 }
 @each $directionKey, $direction in $directions {
   .b#{$directionKey}-#{0} {
-    border-#{$direction}: 0 !important;
+    border-#{$direction}: 0;
   }
 }
 
 @each $key in (static, relative, absolute, fixed, sticky) {
   .position-#{$key} {
-    position: #{$key} !important;
+    position: #{$key};
   }
 }
 
@@ -111,22 +111,22 @@ $colors: (
 
 @each $key in (auto, hidden) {
   .overflow-#{$key} {
-    overflow: #{$key} !important;
+    overflow: #{$key};
   }
 }
 
 @each $key in (left, right, none) {
   .float-#{$key} {
-    float: #{$key} !important;
+    float: #{$key};
   }
 }
 
 @each $key, $val in $whSize {
   .w-#{$key} {
-    width: #{$val} !important;
+    width: #{$val};
   }
   .h-#{$key} {
-    width: #{$val} !important;
+    width: #{$val};
   }
 }
 
@@ -167,34 +167,34 @@ $colors: (
 
 @each $key in $displayType {
   .d-#{$key} {
-    display: #{$key} !important;
+    display: #{$key};
   }
 }
 
 @each $key in (row, column, row-reverse, column-reverse) {
   .flex-#{$key} {
-    flex-direction: #{$key} !important;
+    flex-direction: #{$key};
   }
 }
 
 @each $key in (wrap, nowrap, wrap-reverse) {
   .flex-#{$key} {
-    flex-wrap: #{$key} !important;
+    flex-wrap: #{$key};
   }
 }
 
 @each $key, $val in $flexDirection {
   .justify-#{$key} {
-    justify-content: #{$val} !important;
+    justify-content: #{$val};
   }
   .items-#{$key} {
-    align-items: #{$val} !important;
+    align-items: #{$val};
   }
   .content-#{$key} {
-    align-content: #{$val} !important;
+    align-content: #{$val};
   }
   .self-#{$key} {
-    align-self: #{$val} !important;
+    align-self: #{$val};
   }
 }
 

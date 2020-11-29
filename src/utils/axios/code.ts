@@ -2,13 +2,13 @@
  * default handle errorCode page
  */
 import { AxiosResponse, AxiosError } from 'axios';
-import { RequestConfig } from './types';
+import { RequestConfig, ResponseData } from './types';
 import { useMessage } from '/@/hooks/useMessages';
 const { createErrorModal } = useMessage();
 const codeHandler = () => {
   return {
     responseResolve(response: AxiosResponse) {
-      const data = response.data || {};
+      const data: ResponseData = response.data || {};
       if (response.status === 200 && data.code === 200) {
         return data;
       } else {
