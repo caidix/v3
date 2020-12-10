@@ -1,16 +1,19 @@
 <template>
   <div class="home">
     <song-sheet />
+    <top-songs />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, getCurrentInstance, ref } from 'vue';
 import SongSheet from './SongSheet.vue';
+import TopSongs from './TopSongs.vue';
 export default defineComponent({
   name: 'Home',
   components: {
     SongSheet,
+    TopSongs,
   },
   setup() {
     // const data = ref({});
