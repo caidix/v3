@@ -45,3 +45,12 @@ export function genImgUrl(url: string, w: number, h: number) {
   url += `?param=${w}y${h}`;
   return url;
 }
+export function filterPlayCount(val: number): number | string {
+  if (val >= 100000000) {
+    return Math.ceil(val / 1000000) / 100 + '亿';
+  }
+  if (val >= 10000) {
+    return Math.ceil(val / 100) / 100 + '万';
+  }
+  return val;
+}

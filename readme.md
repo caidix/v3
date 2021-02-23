@@ -1,6 +1,6 @@
 # music-v3 基于 vue3+ts+Antd
 
-> fork 目标：[qq 音乐 h5](https://y.qq.com/?ADTAG=myqq#type=index)
+> fork 目标：[qq 音乐 h5](https://y.qq.com/?ADTAG=myqq#type=index), 第一版简单的使用组件处理一下把整体路子跑通，第二版把整个功能梳理并重新开发组件处理。
 
 ## 安装依赖
 

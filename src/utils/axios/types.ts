@@ -10,8 +10,8 @@ export interface RequestConfig extends AxiosRequestConfig {
 }
 
 export interface ResponseData extends AxiosResponse {
-  result: any;
-  code: number;
+  result?: any;
+  code?: number;
   hasTaste?: boolean;
   [propName: string]: any;
 }

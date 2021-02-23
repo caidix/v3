@@ -24,7 +24,7 @@ export default defineComponent({
             <span class="playlist-item__name" onClick={() => push('/playlists/${id}')}>
               {singer.name}
             </span>
-            {singers.value.length > index + 1 ? '/' : ''}
+            {singers.value.length > index + 1 ? ' / ' : ''}
           </>
         ))}
       </p>

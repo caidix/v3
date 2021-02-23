@@ -23,12 +23,12 @@
 
 <script lang="ts">
 import { LoadingHook } from '/@/hooks/useLoading';
-import FormBlock from './FormBlock.vue';
+import FormBlock from '../FormBlock.vue';
 import { getPersonalizedSong } from '/@/api/songs';
 import { handleSongs, genImgUrl } from '/@/utils/common';
 import { onMounted, ref } from 'vue';
 import { PlayCircleOutlined } from '@ant-design/icons-vue';
-import Singer from './Singer';
+import Singer from '../Singer';
 export default {
   name: 'TopSongs',
   components: {
@@ -44,7 +44,6 @@ export default {
       const { result }: any = await getPersonalizedSong();
       result.length = 9;
       songRef.value = handleSongs(result) as Array<any>;
-      console.log(songRef.value);
     };
     onMounted(() => {
       getSongs();

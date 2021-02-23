@@ -2,6 +2,7 @@
 @import './loader.scss';
 @import './antv.scss';
 @import './var/_index.scss';
+@import './mixins.scss';
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -40,6 +41,20 @@ $border-color-dark: #b6b7b9;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.playlist {
+  display: flex;
+  margin: 0 -4px;
+  flex-wrap: wrap;
+}
+
+.playlist-item_box {
+  position: relative;
+  width: calc(20% - 8px);
+  margin: 4px;
+  margin-bottom: 32px;
+  font-size: 14px;
 }
 
 .playlist-item__imgwarp {
@@ -106,6 +121,20 @@ $border-color-dark: #b6b7b9;
   }
 }
 
+.center-tab-list {
+  display: flex;
+  justify-content: center;
+
+  li {
+    margin: 0 24px;
+    cursor: pointer;
+
+    &:hover {
+      color: $active;
+    }
+  }
+}
+
 .playlist-item__name {
   cursor: pointer;
 
@@ -116,4 +145,10 @@ $border-color-dark: #b6b7b9;
 
 .gary {
   color: #999;
+}
+
+.ab-middle {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -1,9 +1,15 @@
-import { request } from '@/utils';
+import request from '/@/utils/axios';
+export interface MvsProps {
+  area?: string;
+  limit: number;
+  order?: string;
+  offset?: string;
+}
 
-export const getMvDetail = (id) => request.get(`/mv/detail?mvid=${id}`);
+export const getNewMvs = (params: MvsProps) => request.get('/mv/first', { params });
 
-export const getMvUrl = (id) => request.get(`/mv/url?id=${id}`);
+export const getAllMvs = (params: MvsProps) => request.get('/mv/all', { params });
 
-export const getSimiMv = (id) => request.get(`/simi/mv?mvid=${id}`);
+export const getSimiMvs = (id: number) => request.get(`/simi/mv?mvid=${id}`);
 
-export const getAllMvs = (params) => request.get(`/mv/all`, { params });
+export const getPersonalizedMvs = (params: MvsProps) => request.get('/personalized', { params });
